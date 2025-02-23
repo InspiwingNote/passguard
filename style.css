@@ -1,0 +1,238 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; 
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(120deg, #3f51b5, #2c3e94);
+  animation: gradientShift 10s ease infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% {
+    background: linear-gradient(120deg, #3f51b5, #2c3e94);
+  }
+  100% {
+    background: linear-gradient(120deg, #3f51b5, #1c2f74);
+  }
+}
+
+.navbar {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin-right: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.navbar li:hover {
+  transform: scale(1.05);
+  color: #ffc107;
+}
+
+.content-wrapper {
+  margin: 0 auto;
+  max-width: 1000px;
+  height: calc(100% - 3.5rem);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: auto;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  padding-bottom: 2rem;
+}
+
+.section {
+  padding: 1rem 2rem;
+  animation: fadeIn 0.4s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hidden {
+  display: none;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  display: block;
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  width: 300px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+input:focus {
+  border-color: #3f51b5;
+  outline: none;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+button:hover {
+  background-color: #2c3f94;
+  transform: translateY(-1px);
+}
+
+.generator-options {
+  margin-top: 1rem;
+  background: #f7f7f7;
+  padding: 0.8rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+#passwords-list {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.password-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  transition: transform 0.2s;
+}
+.password-entry:hover {
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.service-name {
+  font-weight: 600;
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  width: 320px;
+  position: relative;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.animate-modal {
+  animation: slideInScale 0.4s ease forwards;
+}
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.error-message {
+  color: red;
+  margin-top: 0.5rem;
+}
+
+#notification-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notification {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  animation: slideDown 0.3s ease forwards, fadeOut 4s ease forwards 3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-weight: 500;
+}
+.notification.error {
+  background-color: #e53935;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}

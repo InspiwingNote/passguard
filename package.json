@@ -1,0 +1,44 @@
+{
+  "name": "electron-password-manager",
+  "version": "1.0.0",
+  "description": "My Electron Password Manager with SQLite",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.yourcompany.passwordmanager",
+    "productName": "Password Manager",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "db.js",
+      "encryption.js",
+      "index.html",
+      "renderer.js",
+      "style.css",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": true
+    }
+  }
+}
