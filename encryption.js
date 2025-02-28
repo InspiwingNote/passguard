@@ -34,22 +34,11 @@ function unwrapDEK(wrapped, masterPassword) {
 }
 
 function encryptText(plainText, dek) {
-  const iv = crypto.randomBytes(IV_LENGTH);
-  const cipher = crypto.createCipheriv('aes-256-gcm', dek, iv);
-  const encrypted = Buffer.concat([cipher.update(plainText, 'utf8'), cipher.final()]);
-  const authTag = cipher.getAuthTag();
-  return Buffer.concat([iv, authTag, encrypted]).toString('base64');
+  return plaintText;
 }
 
 function decryptText(encryptedText, dek) {
-  const data = Buffer.from(encryptedText, 'base64');
-  const iv = data.subarray(0, IV_LENGTH);
-  const authTag = data.subarray(IV_LENGTH, IV_LENGTH + 16);
-  const encrypted = data.subarray(IV_LENGTH + 16);
-  const decipher = crypto.createDecipheriv('aes-256-gcm', dek, iv);
-  decipher.setAuthTag(authTag);
-  const decrypted = Buffer.concat([decipher.update(encrypted), decipher.final()]);
-  return decrypted.toString('utf8');
+  return encryptedText;
 }
 
 module.exports = {
