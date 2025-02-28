@@ -1,4 +1,3 @@
-/* CSS Variables for easy theming */
 :root {
   --primary-color: #4e54c8;
   --secondary-color: #8f94fb;
@@ -31,7 +30,6 @@ html, body {
   overflow: hidden;
 }
 
-/* Notification Styles */
 #notification-container {
   position: fixed;
   top: 20px;
@@ -78,7 +76,6 @@ html, body {
   }
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
@@ -115,7 +112,6 @@ html, body {
   color: var(--secondary-color);
 }
 
-/* Main content */
 .content-wrapper {
   margin-top: 80px;
   padding: 2rem;
@@ -123,7 +119,6 @@ html, body {
   overflow-y: auto;
 }
 
-/* Sections (glassmorphism cards) */
 .section {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -152,7 +147,6 @@ p {
   margin-bottom: 1.5rem;
 }
 
-/* Form groups */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -186,7 +180,6 @@ input::placeholder {
 }
 
 
-/* Buttons */
 button.btn {
   padding: 0.8rem 1.5rem;
   background: var(--btn-bg);
@@ -220,7 +213,6 @@ button.btn.small {
   font-size: 0.9rem;
 }
 
-/* Generator Options */
 .generator-options {
   background: rgba(255, 255, 255, 0.1);
   padding: 1rem;
@@ -241,7 +233,6 @@ button.btn.small {
   margin-bottom: 0.8rem;
 }
 
-/* Password entries */
 #passwords-list {
   display: flex;
   flex-direction: column;
@@ -274,7 +265,6 @@ button.btn.small {
   gap: 0.5rem;
 }
 
-/* Modal Styles */
 .modal {
   position: fixed;
   top: 0;
