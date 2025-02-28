@@ -25,6 +25,13 @@ db.serialize(() => {
       password TEXT NOT NULL
     )
   `);
+  
+  db.run(`
+    CREATE TABLE IF NOT EXISTS wrapped_dek (
+      id INTEGER PRIMARY KEY,
+      wrapped_dek TEXT
+    )
+  `);
 });
 
 module.exports = {
@@ -104,6 +111,32 @@ module.exports = {
         if (err) return reject(err);
         resolve(true);
       });
+    });
+  },
+
+  getWrappedDEK: async () => {
+    return new Promise((resolve, reject) => {
+      db.get(
+        "SELECT wrapped_dek FROM wrapped_dek WHERE id = 1",
+        (err, row) => {
+          if (err) return reject(err);
+          if (!row) resolve(null);
+          else resolve(row.wrapped_dek);
+        }
+      );
+    });
+  },
+
+  setWrappedDEK: async (wrapped) => {
+    return new Promise((resolve, reject) => {
+      db.run(
+        `INSERT OR REPLACE INTO wrapped_dek (id, wrapped_dek) VALUES (1, ?)`,
+        [wrapped],
+        function (err) {
+          if (err) return reject(err);
+          resolve(true);
+        }
+      );
     });
   }
 };

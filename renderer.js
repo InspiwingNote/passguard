@@ -148,7 +148,7 @@ welcomeSetMasterBtn.addEventListener('click', async () => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(pass1, salt);
   try {
-    await ipcRenderer.invoke('db:set-master-password', hash);
+    await ipcRenderer.invoke('db:set-master-password', { masterPassword: pass1, masterPasswordHash: hash });
     welcomeStatus.innerText = "Master password set successfully!";
     showNotification("Master password set. You're ready to add passwords!", "success");
     navWelcome.classList.add('hidden');
@@ -379,7 +379,11 @@ changeMasterBtn.addEventListener('click', async () => {
   const salt = bcrypt.genSaltSync(10);
   const newHash = bcrypt.hashSync(newPass, salt);
   try {
-    await ipcRenderer.invoke('db:set-master-password', newHash);
+    await ipcRenderer.invoke('db:change-master-password', {
+      oldMasterPassword: current,
+      newMasterPassword: newPass,
+      newMasterPasswordHash: newHash
+    });
     showNotification("Master password changed!", "success");
     currentMasterInput.value = '';
     newMasterInput.value = '';
