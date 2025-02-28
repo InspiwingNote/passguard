@@ -34,7 +34,7 @@ function unwrapDEK(wrapped, masterPassword) {
 }
 
 function encryptText(plainText, dek) {
-  return plaintText;
+  return plainText;
 }
 
 function decryptText(encryptedText, dek) {
