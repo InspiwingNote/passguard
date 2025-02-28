@@ -1,4 +1,4 @@
-# Password Manager
+# PassGuard
 
 A simple password manager made with Electron and SQLite.
 
