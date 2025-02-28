@@ -1,26 +1,27 @@
-# PassGuard
+# PassGuawd 🥺👉👈
 
-A simple password manager made with Electron and SQLite.
+A simpwe passwowd managew made wif Ewectwon and SQWite! ✨🔒  
 
-## Installation
+## Instaawwation (≧◡≦)  
 
-1. Clone the repository:
+1. Cwone da wepositowy~:
     ```sh
-    git clone https://github.com/xalonious/password-manager.git
+    git cwone https://github.com/xalonious/password-manager.git  
     ```
-2. Navigate to the project directory:
+2. Nyavigate tuwu da pwoject diwectowy:
     ```sh
-    cd password-manager
+    cd passwowd-managew
     ```
-3. Install dependencies:
+3. Instaaww depende-nyaa~s:
     ```sh
-    npm install
-    ```
-
-## How to run
-
-1. Start the application:
-    ```sh
-    npm start
+    npm instaaww  
     ```
 
+## How tuwu wun 🐾
+
+1. Stawt da appwicashion~:
+    ```sh
+    npm stawt  
+    ```
+
+H-have fun using PassGuawd! (✿◕‿◕)🔐💖
