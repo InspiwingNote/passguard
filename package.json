@@ -1,5 +1,5 @@
 {
-  "name": "electron-password-manager",
+  "name": "passguard",
   "version": "1.0.0",
   "description": "My Electron Password Manager with SQLite",
   "main": "main.js",

@@ -27,7 +27,7 @@ const notificationContainer = document.getElementById('notification-container');
 
 function showNotification(message, type = 'success') {
   const notif = document.createElement('div');
-  notif.className = `notification ${type}`;
+  notif.className = "notification " + type;
   notif.innerText = message;
   notificationContainer.appendChild(notif);
   setTimeout(() => {
@@ -188,8 +188,7 @@ function generatePassword() {
   if (genUppercase.checked) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   if (genLowercase.checked) chars += 'abcdefghijklmnopqrstuvwxyz';
   if (genNumbers.checked) chars += '0123456789';
-  if (genSymbols.checked) chars += '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
-
+  if (genSymbols.checked) chars += '!@#$%^&*()_+~|}{[]\\:;?><,./-=';
   let result = '';
   for (let i = 0; i < length; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -247,22 +246,36 @@ async function refreshPasswords() {
     rows.forEach(row => {
       const entryDiv = document.createElement('div');
       entryDiv.className = 'password-entry';
+      
       const nameDiv = document.createElement('div');
       nameDiv.className = 'service-name';
       nameDiv.innerText = row.service_name;
+      
+      const buttonsDiv = document.createElement('div');
+      buttonsDiv.className = 'entry-buttons';
+      
       const copyBtn = document.createElement('button');
+      copyBtn.className = 'btn small';
       copyBtn.innerText = 'Copy';
       copyBtn.addEventListener('click', () => handleCopy(row.id));
+      
       const modifyBtn = document.createElement('button');
+      modifyBtn.className = 'btn small';
       modifyBtn.innerText = 'Modify';
       modifyBtn.addEventListener('click', () => handleModify(row));
+      
       const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'btn small secondary';
       deleteBtn.innerText = 'Delete';
       deleteBtn.addEventListener('click', () => handleDelete(row.id));
+      
+      buttonsDiv.appendChild(copyBtn);
+      buttonsDiv.appendChild(modifyBtn);
+      buttonsDiv.appendChild(deleteBtn);
+      
       entryDiv.appendChild(nameDiv);
-      entryDiv.appendChild(copyBtn);
-      entryDiv.appendChild(modifyBtn);
-      entryDiv.appendChild(deleteBtn);
+      entryDiv.appendChild(buttonsDiv);
+      
       passwordsList.appendChild(entryDiv);
     });
   } catch (err) {

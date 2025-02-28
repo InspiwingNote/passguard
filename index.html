@@ -1,115 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Password Manager</title>
+  <meta charset="UTF-8">
+  <title>PassGuard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="notification-container"></div>
-
-  <div class="navbar">
+  
+  <nav class="navbar">
+    <div class="logo">PassGuard</div>
     <ul>
-      <li id="nav-welcome" class="hidden">Welcome</li>
-      <li id="nav-add">Add a Password</li>
-      <li id="nav-passwords">Passwords</li>
-      <li id="nav-change-master">Change Master</li>
+      <li id="nav-welcome" class="nav-item">Welcome</li>
+      <li id="nav-add" class="nav-item">Add Password</li>
+      <li id="nav-passwords" class="nav-item">Passwords</li>
+      <li id="nav-change-master" class="nav-item">Change Master</li>
     </ul>
-  </div>
-
-  <div class="content-wrapper">
-    <div class="section hidden" id="section-welcome">
-      <h1>Welcome</h1>
-      <p>Please register a Master Password to continue.</p>
-      <label for="welcome-master-password">Master Password:</label>
-      <input type="password" id="welcome-master-password">
-      <label for="welcome-master-repeat">Repeat Password:</label>
-      <input type="password" id="welcome-master-repeat">
-      <button id="welcome-set-master-btn">Set Master Password</button>
-      <div id="welcome-status"></div>
-    </div>
-
-    <div class="section hidden" id="section-add">
-      <h2>Add a Password</h2>
-      <label for="service-name-input">Service Name:</label>
-      <input type="text" id="service-name-input" placeholder="e.g. Gmail, Netflix">
-
-      <label for="password-input">Password (leave blank to generate):</label>
-      <input type="text" id="password-input" placeholder="Enter or generate password">
-
-      <div class="generator-options">
-        <p><strong>Password Generator Options:</strong></p>
-        <label>Length:
-          <input type="number" id="gen-length" min="4" max="64" value="12">
-        </label>
-        <label>Uppercase:
-          <input type="checkbox" id="gen-uppercase" checked>
-        </label>
-        <label>Lowercase:
-          <input type="checkbox" id="gen-lowercase" checked>
-        </label>
-        <label>Numbers:
-          <input type="checkbox" id="gen-numbers" checked>
-        </label>
-        <label>Symbols:
-          <input type="checkbox" id="gen-symbols" checked>
-        </label>
-        <button id="generate-btn">Generate</button>
+  </nav>
+  
+  <main class="content-wrapper">
+    <section id="section-welcome" class="section hidden">
+      <h1>Welcome to PassGuard</h1>
+      <p>Create your master password to secure your vault.</p>
+      <div class="form-group">
+        <label for="welcome-master-password">Master Password</label>
+        <input type="password" id="welcome-master-password" placeholder="Enter master password">
       </div>
-
-      <button id="add-password-btn">Add Password</button>
-      <div id="add-status"></div>
-    </div>
-
-    <div class="section hidden" id="section-passwords">
-      <h2>Stored Passwords</h2>
+      <div class="form-group">
+        <label for="welcome-master-repeat">Confirm Password</label>
+        <input type="password" id="welcome-master-repeat" placeholder="Repeat master password">
+      </div>
+      <button id="welcome-set-master-btn" class="btn">Set Master Password</button>
+      <div id="welcome-status" class="status"></div>
+    </section>
+    
+    <section id="section-add" class="section hidden">
+      <h2>Add a New Password</h2>
+      <div class="form-group">
+        <label for="service-name-input">Service Name</label>
+        <input type="text" id="service-name-input" placeholder="e.g. Gmail, Netflix">
+      </div>
+      <div class="form-group">
+        <label for="password-input">Password <span>(leave blank to auto-generate)</span></label>
+        <input type="text" id="password-input" placeholder="Enter or generate password">
+      </div>
+      
+      <div class="generator-options">
+        <p class="generator-title">Password Generator Options</p>
+        
+        <div class="generator-row">
+          <label>Length:
+            <input type="number" id="gen-length" min="4" max="64" value="12">
+          </label>
+          <button id="generate-btn" class="btn small">Generate</button>
+        </div>
+        
+        <div class="generator-row">
+          <label>Uppercase
+            <input type="checkbox" id="gen-uppercase" checked>
+          </label>
+          <label>Lowercase
+            <input type="checkbox" id="gen-lowercase" checked>
+          </label>
+        </div>
+        
+        <div class="generator-row">
+          <label>Numbers
+            <input type="checkbox" id="gen-numbers" checked>
+          </label>
+          <label>Symbols
+            <input type="checkbox" id="gen-symbols" checked>
+          </label>
+        </div>
+      </div>
+      
+      <button id="add-password-btn" class="btn">Add Password</button>
+      <div id="add-status" class="status"></div>
+    </section>
+    
+    <section id="section-passwords" class="section hidden">
+      <h2>Your Password Vault</h2>
       <div id="passwords-list"></div>
-    </div>
-
-    <div class="section hidden" id="section-change-master">
+    </section>
+    
+    <section id="section-change-master" class="section hidden">
       <h2>Change Master Password</h2>
-      <label for="current-master">Current Master Password:</label>
-      <input type="password" id="current-master">
-      
-      <label for="new-master">New Master Password:</label>
-      <input type="password" id="new-master">
-      
-      <label for="new-master-repeat">Repeat New Master Password:</label>
-      <input type="password" id="new-master-repeat">
-
-      <button id="change-master-btn">Change Password</button>
-      <div id="change-master-status"></div>
-    </div>
-  </div>
-
+      <div class="form-group">
+        <label for="current-master">Current Master Password</label>
+        <input type="password" id="current-master" placeholder="Current password">
+      </div>
+      <div class="form-group">
+        <label for="new-master">New Master Password</label>
+        <input type="password" id="new-master" placeholder="New password">
+      </div>
+      <div class="form-group">
+        <label for="new-master-repeat">Confirm New Password</label>
+        <input type="password" id="new-master-repeat" placeholder="Repeat new password">
+      </div>
+      <button id="change-master-btn" class="btn">Change Master Password</button>
+      <div id="change-master-status" class="status"></div>
+    </section>
+  </main>
+  
   <div id="master-modal" class="modal hidden">
     <div class="modal-content animate-modal">
       <h2>Enter Master Password</h2>
-      <input type="password" id="modal-master-input">
+      <input type="password" id="modal-master-input" placeholder="Master Password">
       <div class="modal-buttons">
-        <button id="modal-cancel-btn">Cancel</button>
-        <button id="modal-confirm-btn">Confirm</button>
+        <button id="modal-cancel-btn" class="btn secondary">Cancel</button>
+        <button id="modal-confirm-btn" class="btn">Confirm</button>
       </div>
       <div id="modal-error-message" class="error-message"></div>
     </div>
   </div>
-
+  
   <div id="modify-modal" class="modal hidden">
     <div class="modal-content animate-modal">
       <h2>Modify Password</h2>
-      <label for="modify-service-name">New Service Name:</label>
-      <input type="text" id="modify-service-name" />
-
-      <label for="modify-new-password">New Password (leave blank to keep old):</label>
-      <input type="text" id="modify-new-password" />
-
+      <div class="form-group">
+        <label for="modify-service-name">Service Name</label>
+        <input type="text" id="modify-service-name" placeholder="Service Name">
+      </div>
+      <div class="form-group">
+        <label for="modify-new-password">New Password <span>(leave blank to keep existing)</span></label>
+        <input type="text" id="modify-new-password" placeholder="New Password">
+      </div>
       <div class="modal-buttons">
-        <button id="modify-cancel-btn">Cancel</button>
-        <button id="modify-save-btn">Save</button>
+        <button id="modify-cancel-btn" class="btn secondary">Cancel</button>
+        <button id="modify-save-btn" class="btn">Save</button>
       </div>
     </div>
   </div>
-
+  
   <script src="renderer.js"></script>
 </body>
 </html>
