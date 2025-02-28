@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const db = require('./db');
-const { encryptText, decryptText, generateKeyFromPassword } = require('./encryption');
+const { encryptText, decryptText } = require('./encryption');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -27,8 +27,7 @@ ipcMain.handle('db:add-password', async (event, { serviceName, plainPassword, ma
   if (!masterPassword) {
     throw new Error("Master password is required to encrypt and store a password.");
   }
-  const key = generateKeyFromPassword(masterPassword);
-  const encrypted = encryptText(plainPassword, key);
+  const encrypted = encryptText(plainPassword, masterPassword);
   return await db.addPassword(serviceName, encrypted);
 });
 
@@ -43,9 +42,8 @@ ipcMain.handle('db:decrypt-password', async (event, { id, masterPassword }) => {
   const record = await db.getPasswordById(id);
   if (!record) return null;
 
-  const key = generateKeyFromPassword(masterPassword);
   try {
-    return decryptText(record.password, key);
+    return decryptText(record.password, masterPassword);
   } catch (err) {
     return null;
   }
@@ -55,8 +53,7 @@ ipcMain.handle('db:update-password', async (event, { id, newServiceName, newPlai
   if (!masterPassword) {
     throw new Error("Master password is required to encrypt and update a password.");
   }
-  const key = generateKeyFromPassword(masterPassword);
-  const newEncrypted = encryptText(newPlainPassword, key);
+  const newEncrypted = encryptText(newPlainPassword, masterPassword);
   return await db.updatePassword(id, newServiceName, newEncrypted);
 });
 
